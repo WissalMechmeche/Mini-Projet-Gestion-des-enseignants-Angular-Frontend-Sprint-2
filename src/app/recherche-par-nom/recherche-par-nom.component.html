@@ -1,0 +1,40 @@
+<div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+  <div>&nbsp;</div>
+  <thead><th>Nom Enseignant </th><th></th></thead>
+  <tbody>
+    <tr>
+      <td><input type="text" name="nom"  class="form-control form-control-lg" [(ngModel)]= "nom"
+         ></td>
+      <td> &nbsp;  &nbsp; </td>
+      <td>
+        <a class="btn btn-success" (click)="onChange()">Rechercher</a>
+      </td>
+    </tr>
+  </tbody>
+</div>
+<div class="container">
+  <div class="card shadow mb-4">
+  <div class="card-body">
+  <table class="table table-striped" >
+  <thead>
+  <tr>
+      <th>Id</th><th>Nom</th><th>Date Naissance</th><th>Salaire</th><th>Département</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let enseignant of enseignantsRecherche">
+  <tr >
+  <td>{{enseignant.idEnseignant}}</td>
+  <td>{{enseignant.nomEnseignant}}</td>
+  <td>{{enseignant.dateNaissance | date:'dd/MM/yyyy'}}</td>
+  <td>{{enseignant.salaire}}</td>
+  <td>{{enseignant.departement.nomDep}}</td>
+  <td><a *ngIf="authService.isAdmin()" class="btn btn-danger"
+    (click)="supprimerEnseignant(enseignant)">Supprimer</a></td>
+  <td><a *ngIf="authService.isAdmin()" class="btn btn-success"
+    [routerLink]="['/updateEnseignant',enseignant.idEnseignant]">Modifier</a></td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+</div>

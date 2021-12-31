@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped" >
+    <thead>
+    <tr>
+        <th>Id</th><th>Nom</th><th>Date Naissance</th><th>Salaire</th><th>Département</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let enseignant of enseignants">
+    <tr >
+    <td>{{enseignant.idEnseignant}}</td>
+    <td>{{enseignant.nomEnseignant}}</td>
+    <td>{{enseignant.dateNaissance | date:'dd/MM/yyyy'}}</td>
+    <td>{{enseignant.salaire}}</td>
+    <td>{{enseignant.departement.nomDep}}</td>
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-danger"
+      (click)="supprimerEnseignant(enseignant)">Supprimer</a></td>
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-success"
+      [routerLink]="['/updateEnseignant',enseignant.idEnseignant]">Modifier</a></td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+</div>
